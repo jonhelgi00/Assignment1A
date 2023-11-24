@@ -22,7 +22,14 @@ def PlotHistogram(X):
   plt.show()
 
 def ML_estimate(X):
-  pass
+  mu = np.mean(X)
+  N = len(X)
+  sum = 0
+  for x in X:
+    sum += (x-mu)**2
+  sample_variance = sum / N
+  tau = 1/sample_variance
+  return mu, tau
 
 
 def Q_1_3_12():
@@ -32,6 +39,15 @@ def Q_1_3_12():
   for n in N:
     data = GenerateDatapoints(mu, tau, n)
     PlotHistogram(data)
+
+def Q_1_3_13():
+  N = [10, 100, 1000]
+  mu = 1
+  tau = 0.5
+  for n in N:
+    data = GenerateDatapoints(mu, tau, n)
+  
+  pass
 
 
 
