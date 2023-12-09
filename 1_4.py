@@ -240,8 +240,19 @@ def SVI_algorithm(w, K, S, n_iter, eta, alpha):
 
   for i in range(0, n_iter):
     # Sample batch and set step size, rho.
+    batch_indices = np.random.choice(D, size=S, replace=False)
+    batch_w = w[batch_indices]
 
     ###### SVI updates #######
+
+    # q(Z) update
+    phi = update_q_Z_svi(batch_w, w, gamma, lmbda)
+
+    # q(theta) update
+    gamma = update_q_theta_svi(batch_w, phi, alpha)
+
+    # q(beta) update
+    lmbda = update_q_beta_svi(batch_w, w, phi, eta)
 
     # ELBO
     elbo[i] = calculate_elbo(w, phi, gamma, lmbda, eta, alpha)
@@ -301,8 +312,8 @@ if __name__ == '__main__':
     print(f"True beta k=0: {np.round(beta0[0, :], precision)}")
     print(f"True beta k=1: {np.round(beta0[1, :], precision)}")
 
-    run_case_1 = False
-    graph_case_1 = False
+    run_case_1 = True
+    graph_case_1 = True
 
     run_case_2 = False
     graph_case_2 = False
