@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>158f3d8a77fa47bfb6416e61a8cc5493</title>
+  <title>6426da774cda4ca1b061ef06fd2533e3</title>
   <style>
     html {
       line-height: 1.5;
@@ -284,15 +284,15 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a hr
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>PlotHistogram(dataset_3)</span></code></pre></div>
 <div class="output display_data">
 <p><img
-src="vertopal_62d2eba672eb45efbd347a109de726d9/412d5990f386591e97dc3d312f92b4becbee00d9.png" /></p>
+src="vertopal_606cf5bc498f426a918180375e39114e/412d5990f386591e97dc3d312f92b4becbee00d9.png" /></p>
 </div>
 <div class="output display_data">
 <p><img
-src="vertopal_62d2eba672eb45efbd347a109de726d9/ce5e8955a14f64bb6b8dfd7328e6775ee75a6715.png" /></p>
+src="vertopal_606cf5bc498f426a918180375e39114e/ce5e8955a14f64bb6b8dfd7328e6775ee75a6715.png" /></p>
 </div>
 <div class="output display_data">
 <p><img
-src="vertopal_62d2eba672eb45efbd347a109de726d9/b33f5e6c89f60c895971c8ef868033930aa7f7d7.png" /></p>
+src="vertopal_606cf5bc498f426a918180375e39114e/b33f5e6c89f60c895971c8ef868033930aa7f7d7.png" /></p>
 </div>
 </div>
 <section id="question-1313" class="cell markdown" id="tKNgTWSg7jV7">
@@ -371,49 +371,89 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a hr
 <span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> elbo</span></code></pre></div>
 </div>
+<div class="cell code" data-execution_count="81">
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm, gamma</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_elbo2(D, a_0, b_0, mu_0, lambda_0, a_N , b_N, mu_N, lambda_N):</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  prior_tau <span class="op">=</span> gamma(a<span class="op">=</span>a_0, scale<span class="op">=</span><span class="dv">1</span><span class="op">/</span>b_0)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Number of Monte Carlo samples</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  num_samples <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Monte Carlo estimation of ELBO</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  elbo_samples <span class="op">=</span> []</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(num_samples):</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    log_likelihood <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sample from the variational distribution</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    sampled_mu <span class="op">=</span> np.random.normal(mu_N, <span class="fl">1.0</span> <span class="op">/</span>np.sqrt(lambda_N))</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    sampled_tau <span class="op">=</span> np.random.gamma(a_N, scale<span class="op">=</span><span class="dv">1</span><span class="op">/</span>b_N)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    prior_mu <span class="op">=</span> norm(mu_0, <span class="dv">1</span><span class="op">/</span>np.sqrt(lambda_0<span class="op">*</span>sampled_tau))</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Log-likelihood</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> x <span class="kw">in</span> D:</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>      log_likelihood <span class="op">+=</span> norm.logpdf(x, loc<span class="op">=</span>sampled_mu, scale<span class="op">=</span>np.sqrt(<span class="fl">1.0</span> <span class="op">/</span> sampled_tau))</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Log-prior for mu and tau</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    log_prior <span class="op">=</span> prior_mu.logpdf(sampled_mu) <span class="op">+</span> prior_tau.logpdf(sampled_tau)</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Log-variational posterior for mu and tau</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    log_q <span class="op">=</span> norm.logpdf(sampled_mu, loc<span class="op">=</span>mu_N, scale<span class="op">=</span><span class="fl">1.0</span> <span class="op">/</span> np.sqrt(lambda_N)) <span class="op">+</span> gamma.logpdf(sampled_tau, a<span class="op">=</span>a_N, scale<span class="op">=</span><span class="dv">1</span><span class="op">/</span>b_N)</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ELBO for this sample</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>    elbo_samples.append(log_likelihood <span class="op">+</span> log_prior <span class="op">-</span> log_q)</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Average ELBO over samples</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>  elbo_samples <span class="op">=</span> np.array(elbo_samples)</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> np.mean(elbo_samples)</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>  <span class="co"># print(&quot;Estimated ELBO:&quot;, elbo_estimate)</span></span></code></pre></div>
+</div>
 <div class="cell markdown" id="c4yCdBt46_8B">
 <p>Now, implement the CAVI algorithm:</p>
 </div>
-<div class="cell code" data-execution_count="56" id="b2j3hem25RPA">
-<div class="sourceCode" id="cb7"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> CAVI(D, a_0, b_0, mu_0, lambda_0):</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  delta_stop <span class="op">=</span> <span class="fl">0.0001</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  delta <span class="op">=</span> math.inf</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  initial_guess_exp_tau <span class="op">=</span> a_0 <span class="op">/</span> b_0</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  elbos <span class="op">=</span> []</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  N <span class="op">=</span> <span class="bu">len</span>(D)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  x_mean <span class="op">=</span> np.mean(D)</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  a_N <span class="op">=</span> a_0</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  b_N <span class="op">=</span> b_0</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  lambda_N <span class="op">=</span> lambda_0</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># CAVI iterations ...</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># save ELBO for each iteration, plot them afterwards to show convergence</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> delta <span class="op">&gt;</span> delta_stop:</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    E_tau <span class="op">=</span> a_N <span class="op">/</span> b_N</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    lambda_N_old <span class="op">=</span> lambda_N </span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    mu_N <span class="op">=</span> (lambda_0 <span class="op">*</span> mu_0 <span class="op">+</span> N <span class="op">*</span> x_mean) <span class="op">/</span> (lambda_0 <span class="op">+</span> N)</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    lambda_N <span class="op">=</span> (lambda_0 <span class="op">+</span> N) <span class="op">*</span> E_tau</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    elbos.append(compute_elbo(D,a_0,b_0,mu_0,lambda_0,a_N,b_N,mu_N,lambda_N))</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    E_mu <span class="op">=</span> mu_N</span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    E_mu2 <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>lambda_N <span class="op">+</span> mu_N<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    b_N_old <span class="op">=</span> b_N</span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    a_N <span class="op">=</span> a_0 <span class="op">+</span> N<span class="op">/</span><span class="dv">2</span></span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    <span class="bu">sum</span> <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> x <span class="kw">in</span> D:</span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>      <span class="bu">sum</span> <span class="op">+=</span> x<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>x<span class="op">*</span>E_mu <span class="op">+</span> E_mu2</span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>    b_N <span class="op">=</span> b_0 <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> <span class="bu">sum</span> <span class="op">+</span> (lambda_0 <span class="op">/</span> <span class="dv">2</span>) <span class="op">*</span> (E_mu2 <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>mu_0<span class="op">*</span>E_mu <span class="op">+</span> mu_0<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>    elbos.append(compute_elbo(D,a_0,b_0,mu_0,lambda_0,a_N,b_N,mu_N,lambda_N))</span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>    delta <span class="op">=</span> <span class="bu">max</span>(math.fabs(lambda_N <span class="op">-</span> lambda_N_old), math.fabs(b_N <span class="op">-</span> b_N_old))</span>
-<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> a_N, b_N, mu_N, lambda_N, elbos</span></code></pre></div>
+<div class="cell code" data-execution_count="79" id="b2j3hem25RPA">
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> CAVI(D, a_0, b_0, mu_0, lambda_0):</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  delta_stop <span class="op">=</span> <span class="fl">0.0001</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  delta <span class="op">=</span> math.inf</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  initial_guess_exp_tau <span class="op">=</span> a_0 <span class="op">/</span> b_0</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  elbos <span class="op">=</span> []</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  N <span class="op">=</span> <span class="bu">len</span>(D)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  x_mean <span class="op">=</span> np.mean(D)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  a_N <span class="op">=</span> a_0</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  b_N <span class="op">=</span> b_0</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  lambda_N <span class="op">=</span> lambda_0</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># CAVI iterations ...</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># save ELBO for each iteration, plot them afterwards to show convergence</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> delta <span class="op">&gt;</span> delta_stop:</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    E_tau <span class="op">=</span> a_N <span class="op">/</span> b_N</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    lambda_N_old <span class="op">=</span> lambda_N </span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    mu_N <span class="op">=</span> (lambda_0 <span class="op">*</span> mu_0 <span class="op">+</span> N <span class="op">*</span> x_mean) <span class="op">/</span> (lambda_0 <span class="op">+</span> N)</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    lambda_N <span class="op">=</span> (lambda_0 <span class="op">+</span> N) <span class="op">*</span> E_tau</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    elbos.append(compute_elbo2(D,a_0,b_0,mu_0,lambda_0,a_N,b_N,mu_N,lambda_N))</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>    E_mu <span class="op">=</span> mu_N</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    E_mu2 <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>lambda_N <span class="op">+</span> mu_N<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    b_N_old <span class="op">=</span> b_N</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>    a_N <span class="op">=</span> a_0 <span class="op">+</span> N<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>    <span class="bu">sum</span> <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> x <span class="kw">in</span> D:</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>      <span class="bu">sum</span> <span class="op">+=</span> x<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>x<span class="op">*</span>E_mu <span class="op">+</span> E_mu2</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>    b_N <span class="op">=</span> b_0 <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> <span class="bu">sum</span> <span class="op">+</span> (lambda_0 <span class="op">/</span> <span class="dv">2</span>) <span class="op">*</span> (E_mu2 <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>mu_0<span class="op">*</span>E_mu <span class="op">+</span> mu_0<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>    elbos.append(compute_elbo2(D,a_0,b_0,mu_0,lambda_0,a_N,b_N,mu_N,lambda_N))</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>    delta <span class="op">=</span> <span class="bu">max</span>(math.fabs(lambda_N <span class="op">-</span> lambda_N_old), math.fabs(b_N <span class="op">-</span> b_N_old))</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> a_N, b_N, mu_N, lambda_N, elbos</span></code></pre></div>
 </div>
 <section id="question-1315" class="cell markdown" id="O-SCLos97Vib">
 <h3><strong><em>Question 1.3.15:</em></strong></h3>
@@ -421,54 +461,54 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a hr
 implement a function that computes it for the given parameters:</p>
 </section>
 <div class="cell code" data-execution_count="57" id="yK4Z8UZ79Qti">
-<div class="sourceCode" id="cb8"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> gamma</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mpmath</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_exact_posterior(D, a_0, b_0, mu_0, lambda_0, mu, tau):</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  N <span class="op">=</span> <span class="bu">len</span>(D)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  beta <span class="op">=</span> b_0 <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> np.<span class="bu">sum</span>(D<span class="op">**</span><span class="dv">2</span>) <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> lambda_0 <span class="op">*</span> mu_0<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> ((lambda_0 <span class="op">*</span> mu_0 <span class="op">+</span> np.<span class="bu">sum</span>(D))<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> (N <span class="op">+</span> lambda_0))</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  alpha <span class="op">=</span> a_0 <span class="op">+</span> N <span class="op">/</span> <span class="dv">2</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  l <span class="op">=</span> N <span class="op">+</span> lambda_0</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  m <span class="op">=</span> ((lambda_0 <span class="op">*</span> mu_0) <span class="op">+</span> np.<span class="bu">sum</span>(D)) <span class="op">/</span> (N <span class="op">+</span> lambda_0)</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># p = (beta**alpha * np.sqrt(l)) / (scipy.special.gamma(alpha) * np.sqrt(2*np.pi)) * (tau**(alpha - 1)) * math.exp(-beta*tau) * math.exp(-l*tau*((mu - m)**2) / 2)</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  p <span class="op">=</span> (mpmath.power(beta,alpha) <span class="op">*</span> np.sqrt(l)) <span class="op">/</span> (mpmath.gamma(alpha) <span class="op">*</span> np.sqrt(<span class="dv">2</span><span class="op">*</span>np.pi)) <span class="op">*</span> (mpmath.power(tau,(alpha <span class="op">-</span> <span class="dv">1</span>))) <span class="op">*</span> mpmath.exp(<span class="op">-</span>beta<span class="op">*</span>tau) <span class="op">*</span> mpmath.exp(<span class="op">-</span>l<span class="op">*</span>tau<span class="op">*</span>((mu <span class="op">-</span> m)<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> <span class="dv">2</span>)</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> p</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> gamma</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mpmath</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_exact_posterior(D, a_0, b_0, mu_0, lambda_0, mu, tau):</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  N <span class="op">=</span> <span class="bu">len</span>(D)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  beta <span class="op">=</span> b_0 <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> np.<span class="bu">sum</span>(D<span class="op">**</span><span class="dv">2</span>) <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> lambda_0 <span class="op">*</span> mu_0<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> ((lambda_0 <span class="op">*</span> mu_0 <span class="op">+</span> np.<span class="bu">sum</span>(D))<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> (N <span class="op">+</span> lambda_0))</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  alpha <span class="op">=</span> a_0 <span class="op">+</span> N <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  l <span class="op">=</span> N <span class="op">+</span> lambda_0</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  m <span class="op">=</span> ((lambda_0 <span class="op">*</span> mu_0) <span class="op">+</span> np.<span class="bu">sum</span>(D)) <span class="op">/</span> (N <span class="op">+</span> lambda_0)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># p = (beta**alpha * np.sqrt(l)) / (scipy.special.gamma(alpha) * np.sqrt(2*np.pi)) * (tau**(alpha - 1)) * math.exp(-beta*tau) * math.exp(-l*tau*((mu - m)**2) / 2)</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  p <span class="op">=</span> (mpmath.power(beta,alpha) <span class="op">*</span> np.sqrt(l)) <span class="op">/</span> (mpmath.gamma(alpha) <span class="op">*</span> np.sqrt(<span class="dv">2</span><span class="op">*</span>np.pi)) <span class="op">*</span> (mpmath.power(tau,(alpha <span class="op">-</span> <span class="dv">1</span>))) <span class="op">*</span> mpmath.exp(<span class="op">-</span>beta<span class="op">*</span>tau) <span class="op">*</span> mpmath.exp(<span class="op">-</span>l<span class="op">*</span>tau<span class="op">*</span>((mu <span class="op">-</span> m)<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> <span class="dv">2</span>)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> p</span></code></pre></div>
 </div>
 <div class="cell code" data-execution_count="58">
-<div class="sourceCode" id="cb9"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Gaussian(x, mu, var):        </span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  q <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>(np.sqrt(var <span class="op">*</span> <span class="dv">2</span><span class="op">*</span>math.pi)) <span class="op">*</span> math.exp(<span class="op">-</span><span class="fl">0.5</span><span class="op">*</span>((x<span class="op">-</span>mu)<span class="op">/</span>np.sqrt(var))<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> q</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Gaussian(x, mu, var):        </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  q <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>(np.sqrt(var <span class="op">*</span> <span class="dv">2</span><span class="op">*</span>math.pi)) <span class="op">*</span> math.exp(<span class="op">-</span><span class="fl">0.5</span><span class="op">*</span>((x<span class="op">-</span>mu)<span class="op">/</span>np.sqrt(var))<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> q</span></code></pre></div>
 </div>
 <div class="cell code" data-execution_count="59">
-<div class="sourceCode" id="cb10"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Gamma(x,a,b):</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># q = (x**(a-1)*math.exp(-b*x)*b**a) / scipy.special.gamma(a)</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  q <span class="op">=</span> (mpmath.power(x,(a<span class="op">-</span><span class="dv">1</span>))<span class="op">*</span>mpmath.exp(<span class="op">-</span>b<span class="op">*</span>x)<span class="op">*</span>mpmath.power(b,a)) <span class="op">/</span> mpmath.gamma(a)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> q</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Gamma(x,a,b):</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># q = (x**(a-1)*math.exp(-b*x)*b**a) / scipy.special.gamma(a)</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  q <span class="op">=</span> (mpmath.power(x,(a<span class="op">-</span><span class="dv">1</span>))<span class="op">*</span>mpmath.exp(<span class="op">-</span>b<span class="op">*</span>x)<span class="op">*</span>mpmath.power(b,a)) <span class="op">/</span> mpmath.gamma(a)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> q</span></code></pre></div>
 </div>
 <div class="cell code" data-execution_count="60">
-<div class="sourceCode" id="cb11"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> computeCAVI(a_N, b_N, mu_N, lambda_N, mu, tau):</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># q = scipy.stats.gamma.pdf(tau, a_N, scale=b_N) * norm.pdf(mu, mu_N, 1/np.sqrt(lambda_N))</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  q <span class="op">=</span> Gaussian(mu,mu_N,<span class="dv">1</span><span class="op">/</span>lambda_N) <span class="op">*</span> Gamma(tau,a_N, b_N)</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> q</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> computeCAVI(a_N, b_N, mu_N, lambda_N, mu, tau):</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># q = scipy.stats.gamma.pdf(tau, a_N, scale=b_N) * norm.pdf(mu, mu_N, 1/np.sqrt(lambda_N))</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  q <span class="op">=</span> Gaussian(mu,mu_N,<span class="dv">1</span><span class="op">/</span>lambda_N) <span class="op">*</span> Gamma(tau,a_N, b_N)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> q</span></code></pre></div>
 </div>
 <div class="cell code" data-execution_count="61">
-<div class="sourceCode" id="cb12"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> standardize(dist):</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  magn <span class="op">=</span> np.linalg.norm(dist)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(dist.shape[<span class="dv">0</span>]):</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(dist.shape[<span class="dv">1</span>]):</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>      dist[i,j] <span class="op">/=</span> magn</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> dist  </span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> standardize(dist):</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  magn <span class="op">=</span> np.linalg.norm(dist)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(dist.shape[<span class="dv">0</span>]):</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(dist.shape[<span class="dv">1</span>]):</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>      dist[i,j] <span class="op">/=</span> magn</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> dist  </span></code></pre></div>
 </div>
 <section id="question-1316" class="cell markdown" id="tQfC9K0f8BxQ">
 <h3><strong><em>Question 1.3.16:</em></strong></h3>
@@ -476,55 +516,55 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a h
 variational distribution with the exact posterior and the ML estimate.
 Visualize the results and discuss your findings.</p>
 </section>
-<div class="cell code" data-execution_count="62" id="suTTO1IJ9y-k">
-<div class="sourceCode" id="cb13"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.lines <span class="im">import</span> Line2D</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>mu_ml, tau_ml <span class="op">=</span> ML_est(dataset_2)</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>a_N, b_N, mu_N, lambda_N, elbos <span class="op">=</span> CAVI(dataset_2, a_0, b_0, mu_0, lambda_0)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>plt.plot(elbos)</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;Iterations&#39;</span>)</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;ELBO&#39;</span>)</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;ELBO vs Iterations&#39;</span>)</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>mu_vect <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">100</span>)</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>tau_vect <span class="op">=</span> np.linspace(<span class="fl">0.1</span>,<span class="dv">2</span>,<span class="dv">100</span>)</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> np.zeros((<span class="dv">100</span>,<span class="dv">100</span>))</span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.zeros((<span class="dv">100</span>,<span class="dv">100</span>))</span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    q[i,j] <span class="op">=</span> computeCAVI(a_N,b_N,mu_N,lambda_N,mu_vect[j], tau_vect[i])</span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    p[i,j] <span class="op">=</span> compute_exact_posterior(dataset_2,a_0, b_0, mu_0, lambda_0, mu_vect[j], tau_vect[i])</span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="co"># q = standardize(q)</span></span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="co"># p = standardize(p)    </span></span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>C1 <span class="op">=</span> plt.contour(mu_vect, tau_vect, q, colors<span class="op">=</span><span class="st">&#39;blue&#39;</span>)</span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>C2 <span class="op">=</span> plt.contour(mu_vect, tau_vect, p, colors<span class="op">=</span><span class="st">&#39;red&#39;</span>)</span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>plt.scatter(mu_ml, tau_ml, color<span class="op">=</span><span class="st">&#39;green&#39;</span>, label<span class="op">=</span><span class="st">&#39;MLE&#39;</span>)</span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>h1,_ <span class="op">=</span> C1.legend_elements()</span>
-<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>h2,_ <span class="op">=</span> C2.legend_elements()</span>
-<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>h3 <span class="op">=</span> Line2D([<span class="dv">0</span>], [<span class="dv">0</span>], marker<span class="op">=</span><span class="st">&#39;o&#39;</span>, color<span class="op">=</span><span class="st">&#39;w&#39;</span>, markerfacecolor<span class="op">=</span><span class="st">&#39;green&#39;</span>, markersize<span class="op">=</span><span class="dv">10</span>, label<span class="op">=</span><span class="st">&#39;MLE&#39;</span>)</span>
-<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>plt.legend([h1[<span class="dv">0</span>], h2[<span class="dv">0</span>], h3], [<span class="st">&#39;variationally inferred posterior&#39;</span>, <span class="st">&#39;exact posterior&#39;</span>, <span class="st">&#39;MLE&#39;</span>])</span>
-<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&quot;mu&quot;</span>)</span>
-<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;tau&quot;</span>)</span>
-<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Distributions for dataset 2&#39;</span>)</span>
-<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a_N,b_N)</span>
-<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mu_N, lambda_N)</span>
-<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a></span></code></pre></div>
+<div class="cell code" data-execution_count="82" id="suTTO1IJ9y-k">
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.lines <span class="im">import</span> Line2D</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>mu_ml, tau_ml <span class="op">=</span> ML_est(dataset_2)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>a_N, b_N, mu_N, lambda_N, elbos <span class="op">=</span> CAVI(dataset_2, a_0, b_0, mu_0, lambda_0)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>plt.plot(elbos)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;Iterations&#39;</span>)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;ELBO&#39;</span>)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;ELBO vs Iterations&#39;</span>)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>mu_vect <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">100</span>)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>tau_vect <span class="op">=</span> np.linspace(<span class="fl">0.1</span>,<span class="dv">2</span>,<span class="dv">100</span>)</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> np.zeros((<span class="dv">100</span>,<span class="dv">100</span>))</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.zeros((<span class="dv">100</span>,<span class="dv">100</span>))</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>    q[i,j] <span class="op">=</span> computeCAVI(a_N,b_N,mu_N,lambda_N,mu_vect[j], tau_vect[i])</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>    p[i,j] <span class="op">=</span> compute_exact_posterior(dataset_2,a_0, b_0, mu_0, lambda_0, mu_vect[j], tau_vect[i])</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="co"># q = standardize(q)</span></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a><span class="co"># p = standardize(p)    </span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>C1 <span class="op">=</span> plt.contour(mu_vect, tau_vect, q, colors<span class="op">=</span><span class="st">&#39;blue&#39;</span>)</span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>C2 <span class="op">=</span> plt.contour(mu_vect, tau_vect, p, colors<span class="op">=</span><span class="st">&#39;red&#39;</span>)</span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>plt.scatter(mu_ml, tau_ml, color<span class="op">=</span><span class="st">&#39;green&#39;</span>, label<span class="op">=</span><span class="st">&#39;MLE&#39;</span>)</span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>h1,_ <span class="op">=</span> C1.legend_elements()</span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>h2,_ <span class="op">=</span> C2.legend_elements()</span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>h3 <span class="op">=</span> Line2D([<span class="dv">0</span>], [<span class="dv">0</span>], marker<span class="op">=</span><span class="st">&#39;o&#39;</span>, color<span class="op">=</span><span class="st">&#39;w&#39;</span>, markerfacecolor<span class="op">=</span><span class="st">&#39;green&#39;</span>, markersize<span class="op">=</span><span class="dv">10</span>, label<span class="op">=</span><span class="st">&#39;MLE&#39;</span>)</span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>plt.legend([h1[<span class="dv">0</span>], h2[<span class="dv">0</span>], h3], [<span class="st">&#39;variationally inferred posterior&#39;</span>, <span class="st">&#39;exact posterior&#39;</span>, <span class="st">&#39;MLE&#39;</span>])</span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&quot;mu&quot;</span>)</span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;tau&quot;</span>)</span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Distributions for dataset 2&#39;</span>)</span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a_N,b_N)</span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mu_N, lambda_N)</span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a></span></code></pre></div>
 <div class="output display_data">
 <p><img
-src="vertopal_62d2eba672eb45efbd347a109de726d9/11262551572a5af8d13e1e7eff26f0660a8cc371.png" /></p>
+src="vertopal_606cf5bc498f426a918180375e39114e/a33b812bc380887641461e41cf8808f3c5eaf9e1.png" /></p>
 </div>
 <div class="output display_data">
 <p><img
-src="vertopal_62d2eba672eb45efbd347a109de726d9/2ecd0a77f1fba17082cecb4cb5b1c50936d1c751.png" /></p>
+src="vertopal_606cf5bc498f426a918180375e39114e/2ecd0a77f1fba17082cecb4cb5b1c50936d1c751.png" /></p>
 </div>
 <div class="output stream stdout">
 <pre><code>51.0 108.11122853504462
@@ -532,55 +572,55 @@ src="vertopal_62d2eba672eb45efbd347a109de726d9/2ecd0a77f1fba17082cecb4cb5b1c5093
 </code></pre>
 </div>
 </div>
-<div class="cell code" data-execution_count="63">
-<div class="sourceCode" id="cb15"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.lines <span class="im">import</span> Line2D</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>mu_ml, tau_ml <span class="op">=</span> ML_est(dataset_1)</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>a_N, b_N, mu_N, lambda_N, elbos <span class="op">=</span> CAVI(dataset_1, a_0, b_0, mu_0, lambda_0)</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>plt.plot(elbos)</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;Iterations&#39;</span>)</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;ELBO&#39;</span>)</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;ELBO vs Iterations&#39;</span>)</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>mu_vect <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">100</span>)</span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>tau_vect <span class="op">=</span> np.linspace(<span class="fl">0.1</span>,<span class="dv">2</span>,<span class="dv">100</span>)</span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> np.zeros((<span class="dv">100</span>,<span class="dv">100</span>))</span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.zeros((<span class="dv">100</span>,<span class="dv">100</span>))</span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    q[i,j] <span class="op">=</span> computeCAVI(a_N,b_N,mu_N,lambda_N,mu_vect[j], tau_vect[i])</span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    p[i,j] <span class="op">=</span> compute_exact_posterior(dataset_1,a_0, b_0, mu_0, lambda_0, mu_vect[j], tau_vect[i])</span>
-<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="co"># q = standardize(q)</span></span>
-<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a><span class="co"># p = standardize(p)    </span></span>
-<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>C1 <span class="op">=</span> plt.contour(mu_vect, tau_vect, q, colors<span class="op">=</span><span class="st">&#39;blue&#39;</span>)</span>
-<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>C2 <span class="op">=</span> plt.contour(mu_vect, tau_vect, p, colors<span class="op">=</span><span class="st">&#39;red&#39;</span>)</span>
-<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>plt.scatter(mu_ml, tau_ml, color<span class="op">=</span><span class="st">&#39;green&#39;</span>, label<span class="op">=</span><span class="st">&#39;MLE&#39;</span>)</span>
-<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>h1,_ <span class="op">=</span> C1.legend_elements()</span>
-<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>h2,_ <span class="op">=</span> C2.legend_elements()</span>
-<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>h3 <span class="op">=</span> Line2D([<span class="dv">0</span>], [<span class="dv">0</span>], marker<span class="op">=</span><span class="st">&#39;o&#39;</span>, color<span class="op">=</span><span class="st">&#39;w&#39;</span>, markerfacecolor<span class="op">=</span><span class="st">&#39;green&#39;</span>, markersize<span class="op">=</span><span class="dv">10</span>, label<span class="op">=</span><span class="st">&#39;MLE&#39;</span>)</span>
-<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>plt.legend([h1[<span class="dv">0</span>], h2[<span class="dv">0</span>], h3], [<span class="st">&#39;variationally inferred posterior&#39;</span>, <span class="st">&#39;exact posterior&#39;</span>, <span class="st">&#39;MLE&#39;</span>])</span>
-<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&quot;mu&quot;</span>)</span>
-<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;tau&quot;</span>)</span>
-<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Distributions for dataset 1&#39;</span>)</span>
-<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a_N,b_N)</span>
-<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mu_N, lambda_N)</span>
-<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a></span></code></pre></div>
+<div class="cell code" data-execution_count="83">
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.lines <span class="im">import</span> Line2D</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>mu_ml, tau_ml <span class="op">=</span> ML_est(dataset_1)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>a_N, b_N, mu_N, lambda_N, elbos <span class="op">=</span> CAVI(dataset_1, a_0, b_0, mu_0, lambda_0)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>plt.plot(elbos)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;Iterations&#39;</span>)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;ELBO&#39;</span>)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;ELBO vs Iterations&#39;</span>)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>mu_vect <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">100</span>)</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>tau_vect <span class="op">=</span> np.linspace(<span class="fl">0.1</span>,<span class="dv">2</span>,<span class="dv">100</span>)</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> np.zeros((<span class="dv">100</span>,<span class="dv">100</span>))</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.zeros((<span class="dv">100</span>,<span class="dv">100</span>))</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>    q[i,j] <span class="op">=</span> computeCAVI(a_N,b_N,mu_N,lambda_N,mu_vect[j], tau_vect[i])</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>    p[i,j] <span class="op">=</span> compute_exact_posterior(dataset_1,a_0, b_0, mu_0, lambda_0, mu_vect[j], tau_vect[i])</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="co"># q = standardize(q)</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="co"># p = standardize(p)    </span></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>C1 <span class="op">=</span> plt.contour(mu_vect, tau_vect, q, colors<span class="op">=</span><span class="st">&#39;blue&#39;</span>)</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>C2 <span class="op">=</span> plt.contour(mu_vect, tau_vect, p, colors<span class="op">=</span><span class="st">&#39;red&#39;</span>)</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>plt.scatter(mu_ml, tau_ml, color<span class="op">=</span><span class="st">&#39;green&#39;</span>, label<span class="op">=</span><span class="st">&#39;MLE&#39;</span>)</span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>h1,_ <span class="op">=</span> C1.legend_elements()</span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>h2,_ <span class="op">=</span> C2.legend_elements()</span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>h3 <span class="op">=</span> Line2D([<span class="dv">0</span>], [<span class="dv">0</span>], marker<span class="op">=</span><span class="st">&#39;o&#39;</span>, color<span class="op">=</span><span class="st">&#39;w&#39;</span>, markerfacecolor<span class="op">=</span><span class="st">&#39;green&#39;</span>, markersize<span class="op">=</span><span class="dv">10</span>, label<span class="op">=</span><span class="st">&#39;MLE&#39;</span>)</span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>plt.legend([h1[<span class="dv">0</span>], h2[<span class="dv">0</span>], h3], [<span class="st">&#39;variationally inferred posterior&#39;</span>, <span class="st">&#39;exact posterior&#39;</span>, <span class="st">&#39;MLE&#39;</span>])</span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&quot;mu&quot;</span>)</span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;tau&quot;</span>)</span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Distributions for dataset 1&#39;</span>)</span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a_N,b_N)</span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mu_N, lambda_N)</span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a></span></code></pre></div>
 <div class="output display_data">
 <p><img
-src="vertopal_62d2eba672eb45efbd347a109de726d9/148e6f7d6ae81cdf48b972b6ae0ad19b54a7bbbc.png" /></p>
+src="vertopal_606cf5bc498f426a918180375e39114e/85a955b0db26732938f3c4e5a6bd141ec2ff8778.png" /></p>
 </div>
 <div class="output display_data">
 <p><img
-src="vertopal_62d2eba672eb45efbd347a109de726d9/abbb7c484cb0c8aa508fa3d87a9bf8eb1c601c7c.png" /></p>
+src="vertopal_606cf5bc498f426a918180375e39114e/abbb7c484cb0c8aa508fa3d87a9bf8eb1c601c7c.png" /></p>
 </div>
 <div class="output stream stdout">
 <pre><code>6.0 16.35259450089353
@@ -588,61 +628,58 @@ src="vertopal_62d2eba672eb45efbd347a109de726d9/abbb7c484cb0c8aa508fa3d87a9bf8eb1
 </code></pre>
 </div>
 </div>
-<div class="cell code" data-execution_count="64">
-<div class="sourceCode" id="cb17"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.lines <span class="im">import</span> Line2D</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>mu_ml, tau_ml <span class="op">=</span> ML_est(dataset_3)</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>a_N, b_N, mu_N, lambda_N, elbos <span class="op">=</span> CAVI(dataset_3, a_0, b_0, mu_0, lambda_0)</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>plt.plot(elbos)</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;Iterations&#39;</span>)</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;ELBO&#39;</span>)</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;ELBO vs Iterations&#39;</span>)</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>mu_vect <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">100</span>)</span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>tau_vect <span class="op">=</span> np.linspace(<span class="fl">0.1</span>,<span class="dv">2</span>,<span class="dv">100</span>)</span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> np.zeros((<span class="dv">100</span>,<span class="dv">100</span>))</span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.zeros((<span class="dv">100</span>,<span class="dv">100</span>))</span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>    q[i,j] <span class="op">=</span> computeCAVI(a_N,b_N,mu_N,lambda_N,mu_vect[j], tau_vect[i])</span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>    p[i,j] <span class="op">=</span> compute_exact_posterior(dataset_3,a_0, b_0, mu_0, lambda_0, mu_vect[j], tau_vect[i])</span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="co"># q = standardize(q)</span></span>
-<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="co"># p = standardize(p)    </span></span>
-<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>C1 <span class="op">=</span> plt.contour(mu_vect, tau_vect, q, colors<span class="op">=</span><span class="st">&#39;blue&#39;</span>)</span>
-<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>C2 <span class="op">=</span> plt.contour(mu_vect, tau_vect, p, colors<span class="op">=</span><span class="st">&#39;red&#39;</span>)</span>
-<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>plt.scatter(mu_ml, tau_ml, color<span class="op">=</span><span class="st">&#39;green&#39;</span>, label<span class="op">=</span><span class="st">&#39;MLE&#39;</span>)</span>
-<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>h1,_ <span class="op">=</span> C1.legend_elements()</span>
-<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>h2,_ <span class="op">=</span> C2.legend_elements()</span>
-<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>h3 <span class="op">=</span> Line2D([<span class="dv">0</span>], [<span class="dv">0</span>], marker<span class="op">=</span><span class="st">&#39;o&#39;</span>, color<span class="op">=</span><span class="st">&#39;w&#39;</span>, markerfacecolor<span class="op">=</span><span class="st">&#39;green&#39;</span>, markersize<span class="op">=</span><span class="dv">10</span>, label<span class="op">=</span><span class="st">&#39;MLE&#39;</span>)</span>
-<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>plt.legend([h1[<span class="dv">0</span>], h2[<span class="dv">0</span>], h3], [<span class="st">&#39;variationally inferred posterior&#39;</span>, <span class="st">&#39;exact posterior&#39;</span>, <span class="st">&#39;MLE&#39;</span>])</span>
-<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&quot;mu&quot;</span>)</span>
-<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;tau&quot;</span>)</span>
-<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Distributions for dataset 3&#39;</span>)</span>
-<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a_N,b_N)</span>
-<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mu_N, lambda_N)</span>
-<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(elbos)</span></code></pre></div>
+<div class="cell code" data-execution_count="84">
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.lines <span class="im">import</span> Line2D</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>mu_ml, tau_ml <span class="op">=</span> ML_est(dataset_3)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>a_N, b_N, mu_N, lambda_N, elbos <span class="op">=</span> CAVI(dataset_3, a_0, b_0, mu_0, lambda_0)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>plt.plot(elbos)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;Iterations&#39;</span>)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;ELBO&#39;</span>)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;ELBO vs Iterations&#39;</span>)</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>mu_vect <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">100</span>)</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>tau_vect <span class="op">=</span> np.linspace(<span class="fl">0.1</span>,<span class="dv">2</span>,<span class="dv">100</span>)</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> np.zeros((<span class="dv">100</span>,<span class="dv">100</span>))</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.zeros((<span class="dv">100</span>,<span class="dv">100</span>))</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>    q[i,j] <span class="op">=</span> computeCAVI(a_N,b_N,mu_N,lambda_N,mu_vect[j], tau_vect[i])</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>    p[i,j] <span class="op">=</span> compute_exact_posterior(dataset_3,a_0, b_0, mu_0, lambda_0, mu_vect[j], tau_vect[i])</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a><span class="co"># q = standardize(q)</span></span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a><span class="co"># p = standardize(p)    </span></span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>C1 <span class="op">=</span> plt.contour(mu_vect, tau_vect, q, colors<span class="op">=</span><span class="st">&#39;blue&#39;</span>)</span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>C2 <span class="op">=</span> plt.contour(mu_vect, tau_vect, p, colors<span class="op">=</span><span class="st">&#39;red&#39;</span>)</span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>plt.scatter(mu_ml, tau_ml, color<span class="op">=</span><span class="st">&#39;green&#39;</span>, label<span class="op">=</span><span class="st">&#39;MLE&#39;</span>)</span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>h1,_ <span class="op">=</span> C1.legend_elements()</span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>h2,_ <span class="op">=</span> C2.legend_elements()</span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>h3 <span class="op">=</span> Line2D([<span class="dv">0</span>], [<span class="dv">0</span>], marker<span class="op">=</span><span class="st">&#39;o&#39;</span>, color<span class="op">=</span><span class="st">&#39;w&#39;</span>, markerfacecolor<span class="op">=</span><span class="st">&#39;green&#39;</span>, markersize<span class="op">=</span><span class="dv">10</span>, label<span class="op">=</span><span class="st">&#39;MLE&#39;</span>)</span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>plt.legend([h1[<span class="dv">0</span>], h2[<span class="dv">0</span>], h3], [<span class="st">&#39;variationally inferred posterior&#39;</span>, <span class="st">&#39;exact posterior&#39;</span>, <span class="st">&#39;MLE&#39;</span>])</span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&quot;mu&quot;</span>)</span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;tau&quot;</span>)</span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Distributions for dataset 3&#39;</span>)</span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a_N,b_N)</span>
+<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mu_N, lambda_N)</span></code></pre></div>
 <div class="output display_data">
 <p><img
-src="vertopal_62d2eba672eb45efbd347a109de726d9/2d995f96be5826aac4817e297e78d551bb6d90f4.png" /></p>
+src="vertopal_606cf5bc498f426a918180375e39114e/e1d0e85189a00ef6857c913ba0d56963a5a12a7a.png" /></p>
 </div>
 <div class="output display_data">
 <p><img
-src="vertopal_62d2eba672eb45efbd347a109de726d9/8b509c9b5bbe25c2539980e46f8b8060be4e8bbb.png" /></p>
+src="vertopal_606cf5bc498f426a918180375e39114e/8b509c9b5bbe25c2539980e46f8b8060be4e8bbb.png" /></p>
 </div>
 <div class="output stream stdout">
 <pre><code>501.0 1088.5726864468677
 1.0305640689625286 460.69592438197066
-[-2099.077430623009, inf, inf, inf, inf, inf, inf, inf]
 </code></pre>
 </div>
 </div>
