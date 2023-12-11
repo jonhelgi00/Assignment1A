@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>158f3d8a77fa47bfb6416e61a8cc5493</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<section id="assignment-13---cavi" class="cell markdown"
+id="sK3wTrs80efU">
+<h1><strong><em>Assignment 1.3 - CAVI</em></strong></h1>
+<p>Consider the model defined by Equation (10.21)-(10-23) in Bishop, for
+which DGM is presented below:</p>
+</section>
+<div class="cell markdown" id="-mZwYR-W4xMs">
+<p><img
+src="data:image/png;base64,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"
+alt="Screen Shot 2023-11-13 at 09.53.37.png" /></p>
+</div>
+<section id="question-1312" class="cell markdown" id="S_TR6L5F02yI">
+<h3><strong><em>Question 1.3.12:</em></strong></h3>
+<p>Implement a function that generates data points for the given
+model.</p>
+</section>
+<div class="cell code" data-execution_count="51" id="FCqgdzAO1cHp">
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> generate_data(mu, tau, N):</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">&#39;&#39;&#39;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Generate Gaussian distributed datasets of size N with </span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">    mean mu and precision tau</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">  &#39;&#39;&#39;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  sigma <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>np.sqrt(tau)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  X <span class="op">=</span> np.random.normal(mu, sigma, N)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> X</span></code></pre></div>
+</div>
+<div class="cell markdown" id="U_y9rqkG1YMS">
+<p>Set μ = 1, τ = 0.5 and generate datasets with size N=10,100,1000.
+Plot the histogram for each of 3 datasets you generated.</p>
+</div>
+<div class="cell code" data-execution_count="52" id="R1hAgtsp19N3">
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>tau <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>dataset_1 <span class="op">=</span> generate_data(mu, tau, <span class="dv">10</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>dataset_2 <span class="op">=</span> generate_data(mu, tau, <span class="dv">100</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>dataset_3 <span class="op">=</span> generate_data(mu, tau, <span class="dv">1000</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Visulaize the datasets via histograms</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> PlotHistogram(X):</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  plt.hist(X, bins<span class="op">=</span><span class="st">&#39;auto&#39;</span>, edgecolor<span class="op">=</span><span class="st">&#39;black&#39;</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  plt.xlabel(<span class="st">&#39;Value&#39;</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  plt.ylabel(<span class="st">&#39;Frequency&#39;</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  plt.title(<span class="st">&#39;Histogram of Dataset&#39;</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  plt.show()</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>PlotHistogram(dataset_1)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>PlotHistogram(dataset_2)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>PlotHistogram(dataset_3)</span></code></pre></div>
+<div class="output display_data">
+<p><img
+src="vertopal_62d2eba672eb45efbd347a109de726d9/412d5990f386591e97dc3d312f92b4becbee00d9.png" /></p>
+</div>
+<div class="output display_data">
+<p><img
+src="vertopal_62d2eba672eb45efbd347a109de726d9/ce5e8955a14f64bb6b8dfd7328e6775ee75a6715.png" /></p>
+</div>
+<div class="output display_data">
+<p><img
+src="vertopal_62d2eba672eb45efbd347a109de726d9/b33f5e6c89f60c895971c8ef868033930aa7f7d7.png" /></p>
+</div>
+</div>
+<section id="question-1313" class="cell markdown" id="tKNgTWSg7jV7">
+<h3><strong><em>Question 1.3.13:</em></strong></h3>
+<p>Find ML estimates of the variables μ and τ</p>
+</section>
+<div class="cell code" data-execution_count="53" id="fdfN3YtG7nYa">
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ML_est(data):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  mu_ml <span class="op">=</span> np.mean(data)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  N <span class="op">=</span> <span class="bu">len</span>(data)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">sum</span> <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> x <span class="kw">in</span> data:</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">sum</span> <span class="op">+=</span> (x<span class="op">-</span>mu)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  sample_variance <span class="op">=</span> <span class="bu">sum</span> <span class="op">/</span> N</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  tau_ml <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>sample_variance</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> mu_ml, tau_ml</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ML_est(dataset_1)) </span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ML_est(dataset_2)) </span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ML_est(dataset_3)) </span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co">#mu_ml is mean of data</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co">#tau_ml is reciprocal of sample variance </span></span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>(1.2609804727425804, 0.375813674262337)
+(1.077129400862253, 0.4750131798758166)
+(1.0300946330314913, 0.4604777327481644)
+</code></pre>
+</div>
+</div>
+<section id="question-1314" class="cell markdown" id="qj3Nm4NW5TZX">
+<h3><strong><em>Question 1.3.14:</em></strong></h3>
+<p>You will implement the VI algorithm for the variational distribution
+in Equation (10.24) in Bishop. Start with introducing the prior
+parameters:</p>
+</section>
+<div class="cell code" data-execution_count="54" id="3BDugmmD5p2f">
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># prior parameters</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>mu_0 <span class="op">=</span> <span class="fl">1.5</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>lambda_0 <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>a_0 <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>b_0 <span class="op">=</span> <span class="dv">2</span></span></code></pre></div>
+</div>
+<div class="cell markdown" id="a5VJC2cU6PJS">
+<p>Continue with a helper function that computes ELBO:</p>
+</div>
+<div class="cell code" data-execution_count="55" id="D9ZT2lVa6OkZ">
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># from scipy.stats import gamma, norm</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> digamma <span class="co">#, gamma</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> gamma, log</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_elbo (D, a_0, b_0, mu_0, lambda_0, a_N , b_N, mu_N, lambda_N):</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># given the prior and posterior parameters together with the data,</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># compute ELBO here</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  E_ln_tau <span class="op">=</span> digamma(a_N) <span class="op">-</span> np.log(b_N)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  E_tau <span class="op">=</span> a_N <span class="op">/</span> b_N</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  E_mu <span class="op">=</span> mu_N</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  E_mu2 <span class="op">=</span> mu_N<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">1</span> <span class="op">/</span> lambda_N</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  N <span class="op">=</span> <span class="bu">len</span>(D)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  term1 <span class="op">=</span> E_ln_tau <span class="op">*</span> (N<span class="op">/</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">1</span><span class="op">/</span><span class="dv">2</span> <span class="op">+</span> a_0 <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="bu">sum</span> <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> x <span class="kw">in</span> D:</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">sum</span> <span class="op">+=</span> x<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>x<span class="op">*</span>E_mu <span class="op">+</span> E_mu2</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  term2 <span class="op">=</span> <span class="op">-</span>E_tau <span class="op">*</span> (<span class="fl">0.5</span> <span class="op">*</span> <span class="bu">sum</span> <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> (E_mu2 <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>mu_0<span class="op">*</span>E_mu <span class="op">*</span> mu_0<span class="op">**</span><span class="dv">2</span>) <span class="op">+</span> b_0)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  term3 <span class="op">=</span> <span class="op">-</span>N<span class="op">/</span><span class="dv">2</span> <span class="op">*</span> np.log(<span class="dv">2</span><span class="op">*</span>math.pi) <span class="op">+</span> a_0 <span class="op">*</span> np.log(b_0) <span class="op">-</span> log(gamma(a_0)) <span class="op">-</span> <span class="fl">0.5</span> <span class="op">*</span> np.log(lambda_N) <span class="op">+</span> <span class="fl">0.5</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  term4 <span class="op">=</span> a_N <span class="op">-</span> np.log(b_N) <span class="op">+</span> np.log(gamma(a_N)) <span class="op">+</span> (<span class="dv">1</span> <span class="op">-</span> a_N) <span class="op">*</span> digamma(a_N)</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>  elbo <span class="op">=</span> term1 <span class="op">+</span> term2 <span class="op">+</span> term3 <span class="op">+</span> term4</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> elbo</span></code></pre></div>
+</div>
+<div class="cell markdown" id="c4yCdBt46_8B">
+<p>Now, implement the CAVI algorithm:</p>
+</div>
+<div class="cell code" data-execution_count="56" id="b2j3hem25RPA">
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> CAVI(D, a_0, b_0, mu_0, lambda_0):</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  delta_stop <span class="op">=</span> <span class="fl">0.0001</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  delta <span class="op">=</span> math.inf</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  initial_guess_exp_tau <span class="op">=</span> a_0 <span class="op">/</span> b_0</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  elbos <span class="op">=</span> []</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  N <span class="op">=</span> <span class="bu">len</span>(D)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  x_mean <span class="op">=</span> np.mean(D)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  a_N <span class="op">=</span> a_0</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  b_N <span class="op">=</span> b_0</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  lambda_N <span class="op">=</span> lambda_0</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># CAVI iterations ...</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># save ELBO for each iteration, plot them afterwards to show convergence</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> delta <span class="op">&gt;</span> delta_stop:</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    E_tau <span class="op">=</span> a_N <span class="op">/</span> b_N</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    lambda_N_old <span class="op">=</span> lambda_N </span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    mu_N <span class="op">=</span> (lambda_0 <span class="op">*</span> mu_0 <span class="op">+</span> N <span class="op">*</span> x_mean) <span class="op">/</span> (lambda_0 <span class="op">+</span> N)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    lambda_N <span class="op">=</span> (lambda_0 <span class="op">+</span> N) <span class="op">*</span> E_tau</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    elbos.append(compute_elbo(D,a_0,b_0,mu_0,lambda_0,a_N,b_N,mu_N,lambda_N))</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    E_mu <span class="op">=</span> mu_N</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    E_mu2 <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>lambda_N <span class="op">+</span> mu_N<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    b_N_old <span class="op">=</span> b_N</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    a_N <span class="op">=</span> a_0 <span class="op">+</span> N<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    <span class="bu">sum</span> <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> x <span class="kw">in</span> D:</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>      <span class="bu">sum</span> <span class="op">+=</span> x<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>x<span class="op">*</span>E_mu <span class="op">+</span> E_mu2</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>    b_N <span class="op">=</span> b_0 <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> <span class="bu">sum</span> <span class="op">+</span> (lambda_0 <span class="op">/</span> <span class="dv">2</span>) <span class="op">*</span> (E_mu2 <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>mu_0<span class="op">*</span>E_mu <span class="op">+</span> mu_0<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>    elbos.append(compute_elbo(D,a_0,b_0,mu_0,lambda_0,a_N,b_N,mu_N,lambda_N))</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>    delta <span class="op">=</span> <span class="bu">max</span>(math.fabs(lambda_N <span class="op">-</span> lambda_N_old), math.fabs(b_N <span class="op">-</span> b_N_old))</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> a_N, b_N, mu_N, lambda_N, elbos</span></code></pre></div>
+</div>
+<section id="question-1315" class="cell markdown" id="O-SCLos97Vib">
+<h3><strong><em>Question 1.3.15:</em></strong></h3>
+<p>What is the exact posterior? First derive it in closed form, and then
+implement a function that computes it for the given parameters:</p>
+</section>
+<div class="cell code" data-execution_count="57" id="yK4Z8UZ79Qti">
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> gamma</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mpmath</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_exact_posterior(D, a_0, b_0, mu_0, lambda_0, mu, tau):</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  N <span class="op">=</span> <span class="bu">len</span>(D)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  beta <span class="op">=</span> b_0 <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> np.<span class="bu">sum</span>(D<span class="op">**</span><span class="dv">2</span>) <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> lambda_0 <span class="op">*</span> mu_0<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> ((lambda_0 <span class="op">*</span> mu_0 <span class="op">+</span> np.<span class="bu">sum</span>(D))<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> (N <span class="op">+</span> lambda_0))</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  alpha <span class="op">=</span> a_0 <span class="op">+</span> N <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  l <span class="op">=</span> N <span class="op">+</span> lambda_0</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  m <span class="op">=</span> ((lambda_0 <span class="op">*</span> mu_0) <span class="op">+</span> np.<span class="bu">sum</span>(D)) <span class="op">/</span> (N <span class="op">+</span> lambda_0)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># p = (beta**alpha * np.sqrt(l)) / (scipy.special.gamma(alpha) * np.sqrt(2*np.pi)) * (tau**(alpha - 1)) * math.exp(-beta*tau) * math.exp(-l*tau*((mu - m)**2) / 2)</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  p <span class="op">=</span> (mpmath.power(beta,alpha) <span class="op">*</span> np.sqrt(l)) <span class="op">/</span> (mpmath.gamma(alpha) <span class="op">*</span> np.sqrt(<span class="dv">2</span><span class="op">*</span>np.pi)) <span class="op">*</span> (mpmath.power(tau,(alpha <span class="op">-</span> <span class="dv">1</span>))) <span class="op">*</span> mpmath.exp(<span class="op">-</span>beta<span class="op">*</span>tau) <span class="op">*</span> mpmath.exp(<span class="op">-</span>l<span class="op">*</span>tau<span class="op">*</span>((mu <span class="op">-</span> m)<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> <span class="dv">2</span>)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> p</span></code></pre></div>
+</div>
+<div class="cell code" data-execution_count="58">
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Gaussian(x, mu, var):        </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  q <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>(np.sqrt(var <span class="op">*</span> <span class="dv">2</span><span class="op">*</span>math.pi)) <span class="op">*</span> math.exp(<span class="op">-</span><span class="fl">0.5</span><span class="op">*</span>((x<span class="op">-</span>mu)<span class="op">/</span>np.sqrt(var))<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> q</span></code></pre></div>
+</div>
+<div class="cell code" data-execution_count="59">
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Gamma(x,a,b):</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># q = (x**(a-1)*math.exp(-b*x)*b**a) / scipy.special.gamma(a)</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  q <span class="op">=</span> (mpmath.power(x,(a<span class="op">-</span><span class="dv">1</span>))<span class="op">*</span>mpmath.exp(<span class="op">-</span>b<span class="op">*</span>x)<span class="op">*</span>mpmath.power(b,a)) <span class="op">/</span> mpmath.gamma(a)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> q</span></code></pre></div>
+</div>
+<div class="cell code" data-execution_count="60">
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> computeCAVI(a_N, b_N, mu_N, lambda_N, mu, tau):</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># q = scipy.stats.gamma.pdf(tau, a_N, scale=b_N) * norm.pdf(mu, mu_N, 1/np.sqrt(lambda_N))</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  q <span class="op">=</span> Gaussian(mu,mu_N,<span class="dv">1</span><span class="op">/</span>lambda_N) <span class="op">*</span> Gamma(tau,a_N, b_N)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> q</span></code></pre></div>
+</div>
+<div class="cell code" data-execution_count="61">
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> standardize(dist):</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  magn <span class="op">=</span> np.linalg.norm(dist)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(dist.shape[<span class="dv">0</span>]):</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(dist.shape[<span class="dv">1</span>]):</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>      dist[i,j] <span class="op">/=</span> magn</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> dist  </span></code></pre></div>
+</div>
+<section id="question-1316" class="cell markdown" id="tQfC9K0f8BxQ">
+<h3><strong><em>Question 1.3.16:</em></strong></h3>
+<p>Run the VI algorithm on the datasets. Compare the inferred
+variational distribution with the exact posterior and the ML estimate.
+Visualize the results and discuss your findings.</p>
+</section>
+<div class="cell code" data-execution_count="62" id="suTTO1IJ9y-k">
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.lines <span class="im">import</span> Line2D</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>mu_ml, tau_ml <span class="op">=</span> ML_est(dataset_2)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>a_N, b_N, mu_N, lambda_N, elbos <span class="op">=</span> CAVI(dataset_2, a_0, b_0, mu_0, lambda_0)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>plt.plot(elbos)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;Iterations&#39;</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;ELBO&#39;</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;ELBO vs Iterations&#39;</span>)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>mu_vect <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">100</span>)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>tau_vect <span class="op">=</span> np.linspace(<span class="fl">0.1</span>,<span class="dv">2</span>,<span class="dv">100</span>)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> np.zeros((<span class="dv">100</span>,<span class="dv">100</span>))</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.zeros((<span class="dv">100</span>,<span class="dv">100</span>))</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    q[i,j] <span class="op">=</span> computeCAVI(a_N,b_N,mu_N,lambda_N,mu_vect[j], tau_vect[i])</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    p[i,j] <span class="op">=</span> compute_exact_posterior(dataset_2,a_0, b_0, mu_0, lambda_0, mu_vect[j], tau_vect[i])</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="co"># q = standardize(q)</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="co"># p = standardize(p)    </span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>C1 <span class="op">=</span> plt.contour(mu_vect, tau_vect, q, colors<span class="op">=</span><span class="st">&#39;blue&#39;</span>)</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>C2 <span class="op">=</span> plt.contour(mu_vect, tau_vect, p, colors<span class="op">=</span><span class="st">&#39;red&#39;</span>)</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>plt.scatter(mu_ml, tau_ml, color<span class="op">=</span><span class="st">&#39;green&#39;</span>, label<span class="op">=</span><span class="st">&#39;MLE&#39;</span>)</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>h1,_ <span class="op">=</span> C1.legend_elements()</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>h2,_ <span class="op">=</span> C2.legend_elements()</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>h3 <span class="op">=</span> Line2D([<span class="dv">0</span>], [<span class="dv">0</span>], marker<span class="op">=</span><span class="st">&#39;o&#39;</span>, color<span class="op">=</span><span class="st">&#39;w&#39;</span>, markerfacecolor<span class="op">=</span><span class="st">&#39;green&#39;</span>, markersize<span class="op">=</span><span class="dv">10</span>, label<span class="op">=</span><span class="st">&#39;MLE&#39;</span>)</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>plt.legend([h1[<span class="dv">0</span>], h2[<span class="dv">0</span>], h3], [<span class="st">&#39;variationally inferred posterior&#39;</span>, <span class="st">&#39;exact posterior&#39;</span>, <span class="st">&#39;MLE&#39;</span>])</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&quot;mu&quot;</span>)</span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;tau&quot;</span>)</span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Distributions for dataset 2&#39;</span>)</span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a_N,b_N)</span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mu_N, lambda_N)</span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a></span></code></pre></div>
+<div class="output display_data">
+<p><img
+src="vertopal_62d2eba672eb45efbd347a109de726d9/11262551572a5af8d13e1e7eff26f0660a8cc371.png" /></p>
+</div>
+<div class="output display_data">
+<p><img
+src="vertopal_62d2eba672eb45efbd347a109de726d9/2ecd0a77f1fba17082cecb4cb5b1c50936d1c751.png" /></p>
+</div>
+<div class="output stream stdout">
+<pre><code>51.0 108.11122853504462
+1.0813162384774782 47.64537479096254
+</code></pre>
+</div>
+</div>
+<div class="cell code" data-execution_count="63">
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.lines <span class="im">import</span> Line2D</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>mu_ml, tau_ml <span class="op">=</span> ML_est(dataset_1)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>a_N, b_N, mu_N, lambda_N, elbos <span class="op">=</span> CAVI(dataset_1, a_0, b_0, mu_0, lambda_0)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>plt.plot(elbos)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;Iterations&#39;</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;ELBO&#39;</span>)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;ELBO vs Iterations&#39;</span>)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>mu_vect <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">100</span>)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>tau_vect <span class="op">=</span> np.linspace(<span class="fl">0.1</span>,<span class="dv">2</span>,<span class="dv">100</span>)</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> np.zeros((<span class="dv">100</span>,<span class="dv">100</span>))</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.zeros((<span class="dv">100</span>,<span class="dv">100</span>))</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    q[i,j] <span class="op">=</span> computeCAVI(a_N,b_N,mu_N,lambda_N,mu_vect[j], tau_vect[i])</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    p[i,j] <span class="op">=</span> compute_exact_posterior(dataset_1,a_0, b_0, mu_0, lambda_0, mu_vect[j], tau_vect[i])</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="co"># q = standardize(q)</span></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a><span class="co"># p = standardize(p)    </span></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>C1 <span class="op">=</span> plt.contour(mu_vect, tau_vect, q, colors<span class="op">=</span><span class="st">&#39;blue&#39;</span>)</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>C2 <span class="op">=</span> plt.contour(mu_vect, tau_vect, p, colors<span class="op">=</span><span class="st">&#39;red&#39;</span>)</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>plt.scatter(mu_ml, tau_ml, color<span class="op">=</span><span class="st">&#39;green&#39;</span>, label<span class="op">=</span><span class="st">&#39;MLE&#39;</span>)</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>h1,_ <span class="op">=</span> C1.legend_elements()</span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>h2,_ <span class="op">=</span> C2.legend_elements()</span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>h3 <span class="op">=</span> Line2D([<span class="dv">0</span>], [<span class="dv">0</span>], marker<span class="op">=</span><span class="st">&#39;o&#39;</span>, color<span class="op">=</span><span class="st">&#39;w&#39;</span>, markerfacecolor<span class="op">=</span><span class="st">&#39;green&#39;</span>, markersize<span class="op">=</span><span class="dv">10</span>, label<span class="op">=</span><span class="st">&#39;MLE&#39;</span>)</span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>plt.legend([h1[<span class="dv">0</span>], h2[<span class="dv">0</span>], h3], [<span class="st">&#39;variationally inferred posterior&#39;</span>, <span class="st">&#39;exact posterior&#39;</span>, <span class="st">&#39;MLE&#39;</span>])</span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&quot;mu&quot;</span>)</span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;tau&quot;</span>)</span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Distributions for dataset 1&#39;</span>)</span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a_N,b_N)</span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mu_N, lambda_N)</span>
+<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a></span></code></pre></div>
+<div class="output display_data">
+<p><img
+src="vertopal_62d2eba672eb45efbd347a109de726d9/148e6f7d6ae81cdf48b972b6ae0ad19b54a7bbbc.png" /></p>
+</div>
+<div class="output display_data">
+<p><img
+src="vertopal_62d2eba672eb45efbd347a109de726d9/abbb7c484cb0c8aa508fa3d87a9bf8eb1c601c7c.png" /></p>
+</div>
+<div class="output stream stdout">
+<pre><code>6.0 16.35259450089353
+1.2827095206750732 4.036060743286496
+</code></pre>
+</div>
+</div>
+<div class="cell code" data-execution_count="64">
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.lines <span class="im">import</span> Line2D</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>mu_ml, tau_ml <span class="op">=</span> ML_est(dataset_3)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>a_N, b_N, mu_N, lambda_N, elbos <span class="op">=</span> CAVI(dataset_3, a_0, b_0, mu_0, lambda_0)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>plt.plot(elbos)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;Iterations&#39;</span>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;ELBO&#39;</span>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;ELBO vs Iterations&#39;</span>)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>mu_vect <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">100</span>)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>tau_vect <span class="op">=</span> np.linspace(<span class="fl">0.1</span>,<span class="dv">2</span>,<span class="dv">100</span>)</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> np.zeros((<span class="dv">100</span>,<span class="dv">100</span>))</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.zeros((<span class="dv">100</span>,<span class="dv">100</span>))</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>    q[i,j] <span class="op">=</span> computeCAVI(a_N,b_N,mu_N,lambda_N,mu_vect[j], tau_vect[i])</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>    p[i,j] <span class="op">=</span> compute_exact_posterior(dataset_3,a_0, b_0, mu_0, lambda_0, mu_vect[j], tau_vect[i])</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="co"># q = standardize(q)</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="co"># p = standardize(p)    </span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>C1 <span class="op">=</span> plt.contour(mu_vect, tau_vect, q, colors<span class="op">=</span><span class="st">&#39;blue&#39;</span>)</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>C2 <span class="op">=</span> plt.contour(mu_vect, tau_vect, p, colors<span class="op">=</span><span class="st">&#39;red&#39;</span>)</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>plt.scatter(mu_ml, tau_ml, color<span class="op">=</span><span class="st">&#39;green&#39;</span>, label<span class="op">=</span><span class="st">&#39;MLE&#39;</span>)</span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>h1,_ <span class="op">=</span> C1.legend_elements()</span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>h2,_ <span class="op">=</span> C2.legend_elements()</span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>h3 <span class="op">=</span> Line2D([<span class="dv">0</span>], [<span class="dv">0</span>], marker<span class="op">=</span><span class="st">&#39;o&#39;</span>, color<span class="op">=</span><span class="st">&#39;w&#39;</span>, markerfacecolor<span class="op">=</span><span class="st">&#39;green&#39;</span>, markersize<span class="op">=</span><span class="dv">10</span>, label<span class="op">=</span><span class="st">&#39;MLE&#39;</span>)</span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>plt.legend([h1[<span class="dv">0</span>], h2[<span class="dv">0</span>], h3], [<span class="st">&#39;variationally inferred posterior&#39;</span>, <span class="st">&#39;exact posterior&#39;</span>, <span class="st">&#39;MLE&#39;</span>])</span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&quot;mu&quot;</span>)</span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;tau&quot;</span>)</span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Distributions for dataset 3&#39;</span>)</span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a_N,b_N)</span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mu_N, lambda_N)</span>
+<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(elbos)</span></code></pre></div>
+<div class="output display_data">
+<p><img
+src="vertopal_62d2eba672eb45efbd347a109de726d9/2d995f96be5826aac4817e297e78d551bb6d90f4.png" /></p>
+</div>
+<div class="output display_data">
+<p><img
+src="vertopal_62d2eba672eb45efbd347a109de726d9/8b509c9b5bbe25c2539980e46f8b8060be4e8bbb.png" /></p>
+</div>
+<div class="output stream stdout">
+<pre><code>501.0 1088.5726864468677
+1.0305640689625286 460.69592438197066
+[-2099.077430623009, inf, inf, inf, inf, inf, inf, inf]
+</code></pre>
+</div>
+</div>
+</body>
+</html>
